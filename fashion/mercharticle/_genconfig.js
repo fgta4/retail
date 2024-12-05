@@ -14,9 +14,7 @@ module.exports = {
 			comment: 'Daftar article merchandise',
 			data: {
 				mercharticle_id: { 
-					text: 'ID', type: dbtype.varchar(14),  null: false, 
-					reference: {table: 'mst_itemstock', field_value: 'itemstock_id', field_display:'itemstock_name',  field_display_name:'itemstock_name'}, 
-					options: { required: true, invalidMessage: 'ID harus diisi' } 
+					text: 'ID', type: dbtype.varchar(14),  null: false,  options: { required: true, invalidMessage: 'ID harus diisi' } 
 				},
 				
 				mercharticle_art: {text:'ART', type: dbtype.varchar(30), null:true, suppresslist: true, options:{required:true,invalidMessage:'Artikel harus diisi'}},
@@ -32,7 +30,7 @@ module.exports = {
 				mercharticle_pcpgroup: {text:'pcp group', type: dbtype.varchar(90), null:true, suppresslist: true},
 				mercharticle_pcpcategory: {text:'pcp category', type: dbtype.varchar(90), null:true, suppresslist: true},
 				mercharticle_gender: {text:'Gender', type: dbtype.varchar(1), null:true, suppresslist: true},
-				mercharticle_fit: {text:'Fit', type: dbtype.varchar(10), null:true, suppresslist: true},
+				mercharticle_fit: {text:'Fit', type: dbtype.varchar(30), null:true, suppresslist: true},
 				mercharticle_hscodeship: {text:'HSCode (ship)', type: dbtype.varchar(30), null:true, suppresslist: true},
 				mercharticle_hscodeina: {text:'HSCode (ina)', type: dbtype.varchar(30), null:true, suppresslist: true},
 				mercharticle_gtype: {text:'GType', type: dbtype.varchar(5), null:true, suppresslist: true},

@@ -188,7 +188,6 @@ $API = new class extends mercharticleBase {
 					// // jikalau ingin menambah atau edit field di result record, dapat dilakukan sesuai contoh sbb: 
 					//'tanggal' => date("d/m/y", strtotime($record['tanggal'])),
 				 	//'tambahan' => 'dta'
-					'itemstock_name' => \FGTA4\utils\SqlUtility::Lookup($record['mercharticle_id'], $this->db, 'mst_itemstock', 'itemstock_id', 'itemstock_name'),
 					'merchctg_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchctg_id'], $this->db, 'fsn_merchctg', 'merchctg_id', 'merchctg_name'),
 					'merchsea_name' => \FGTA4\utils\SqlUtility::Lookup($record['merchsea_id'], $this->db, 'fsn_merchsea', 'merchsea_id', 'merchsea_name'),
 					'unit_name' => \FGTA4\utils\SqlUtility::Lookup($record['unit_id'], $this->db, 'mst_unit', 'unit_id', 'unit_name'),
@@ -200,7 +199,6 @@ $API = new class extends mercharticleBase {
 
 
 				// lookup data id yang refer ke table lain
-				$this->addFields('itemstock_name', 'mercharticle_id', $record, 'mst_itemstock', 'itemstock_name', 'itemstock_id');
 				$this->addFields('merchctg_name', 'merchctg_id', $record, 'fsn_merchctg', 'merchctg_name', 'merchctg_id');
 				$this->addFields('merchsea_name', 'merchsea_id', $record, 'fsn_merchsea', 'merchsea_name', 'merchsea_id');
 				$this->addFields('unit_name', 'unit_id', $record, 'mst_unit', 'unit_name', 'unit_id');
