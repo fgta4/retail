@@ -51,12 +51,21 @@ console::class(new class($args) extends syncWorkerBase {
 
 			// ekstract data parameter
 			$args = json_decode($data);
+			if (json_last_error() !== JSON_ERROR_NONE) {
+				throw new \Exception("Error on parse JSON: " . json_last_error_msg() . " - " . $data);
+			}
+
 			if (!property_exists($args, 'region_id')) {
-				throw new \Exception('parameter region_id belum didefinisikan');
+				throw new \Exception("parameter 'region_id' belum didefinisikan");
 			}
 
 			if (!property_exists($args, 'heinvregister_id')) {
-				throw new \Exception('parameter heinvregister_id belum didefinisikan');
+				throw new \Exception("parameter 'heinvregister_id' belum didefinisikan");
+			}
+
+
+			if (!property_exists($args, 'merchorderout_id')) {
+				throw new \Exception("parameter 'merchorderout_id' belum didefinisikan");
 			}
 
 			$region_id = $args->region_id;
@@ -82,7 +91,7 @@ console::class(new class($args) extends syncWorkerBase {
 
 
 			// Jalankan persiapan disini
-			$url = 'http://ws.transfashion.id/crossroads/apis';
+			$url = 'http://ws.transfashionindonesia.com/crossroads/apis';
 			$endpoint = "$url/getregister.php?id=$heinvregister_id&region=$region_id";
 
 			$progress = 2;
@@ -92,6 +101,9 @@ console::class(new class($args) extends syncWorkerBase {
 			$ch = curl_init($endpoint);
 			curl_setopt_array($ch, self::CurlOPTIONS);
 			$jsoncontent  = curl_exec($ch);
+			if(curl_errno($ch)){
+				throw new \Exception(curl_error($ch));
+			}
 			curl_close($ch);
 			
 			/*
@@ -210,7 +222,6 @@ console::class(new class($args) extends syncWorkerBase {
 
 				}
 
-				print_r($regitem);
 
 				$this->db->commit();
 			} catch (\Exception $ex) {
@@ -381,6 +392,8 @@ console::class(new class($args) extends syncWorkerBase {
 		$obj->merchregtype_id = 'R01';
 		$obj->interface_id = 'TB';
 		$obj->merchregtype_iscangenerate = 1;
+
+
 
 		try {
 

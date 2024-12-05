@@ -81,7 +81,7 @@ console::class(new class($args) extends syncWorkerBase {
 			$dept_id = $refdata['dept_id'];
 
 			// Jalankan persiapan disini
-			$url = 'http://ws.transfashion.id/crossroads/apis';
+			$url = 'http://ws.transfashionindonesia.com/crossroads/apis';
 			$endpoint = "$url/getrv.php?id=$hemoving_id&region=$region_id";
 
 			$progress = 2;
